@@ -44,7 +44,9 @@ class User < ActiveRecord::Base
   end
 
   def have?(item)
+    #if !(have_items.include?(item))
     have_items.find_by(item_code: item['itemCode']).present?
+    #end
   end
 
   def want(item)
@@ -58,6 +60,8 @@ class User < ActiveRecord::Base
 
   def want?(item)
     #binding.pry
+    #if !(have_items.include?(item))
     want_items.find_by(item_code: item['itemCode']).present?
+    #end
   end
 end

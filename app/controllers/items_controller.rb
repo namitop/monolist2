@@ -13,6 +13,13 @@ class ItemsController < ApplicationController
   end
 
   def show
+    page_title = @item.title
+    base_title = "monolist"
+    if page_title.empty?
+      base_title
+    else
+      "#{page_title} - #{base_title}"
+    end
   end
 
   private

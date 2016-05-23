@@ -1,6 +1,26 @@
+<%= 
+=begin
+link_to "" , 
+    ownership_path(current_user.wants.find_by(:item_id => item.id) , 
+      item_id: item.id , type: "Want") ,
+    :class => "want-#{item.id} btn-want btn btn-danger btn-sm want_it",
+    :remote => true,
+    :method => :delete 
+=end
+%>
+
+          <%=
+=begin
+link_to "" , ownership_path(current_user.wants.find_by(:item_code => item['itemCode']), item_code: item['itemCode'] , type: "Want") ,
+                        :class => "want-#{item.id} btn-want btn btn-danger btn-sm want_it",
+                        :remote => true,
+                        :method => :delete
+=end
+%>
 <%= link_to "" , 
     ownership_path(current_user.wants.find_by(:item_id => item.id) , 
       item_id: item.id , type: "Want") ,
     :class => "want-#{item.id} btn-want btn btn-danger btn-sm want_it",
+    :item_code => "want-#{item.id}",
     :remote => true,
     :method => :delete %>
