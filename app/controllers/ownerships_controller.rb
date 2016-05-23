@@ -2,6 +2,7 @@ class OwnershipsController < ApplicationController
   before_action :logged_in_user
 
   def create
+    #binding.pry
     if params[:item_code]
       @item = Item.find_or_initialize_by(item_code: params[:item_code])
     else
@@ -13,6 +14,7 @@ class OwnershipsController < ApplicationController
       # TODO 商品情報の取得 RakutenWebService::Ichiba::Item.search を用いてください
       items = RakutenWebService::Ichiba::Item.search(
         keyword: params[:q],
+        #itemCode: params['item_code'],
         imageFlag: 1,
       )
 
