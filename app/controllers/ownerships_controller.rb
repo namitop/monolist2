@@ -13,7 +13,6 @@ class OwnershipsController < ApplicationController
     if @item.new_record?
       # TODO 商品情報の取得 RakutenWebService::Ichiba::Item.search を用いてください
       items = RakutenWebService::Ichiba::Item.search(
-        #keyword: params[:q],
         itemCode: params['item_code'],
         imageFlag: 1,
       )
