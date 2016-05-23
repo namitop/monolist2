@@ -13,8 +13,8 @@ class OwnershipsController < ApplicationController
     if @item.new_record?
       # TODO 商品情報の取得 RakutenWebService::Ichiba::Item.search を用いてください
       items = RakutenWebService::Ichiba::Item.search(
-        keyword: params[:q],
-        #itemCode: params['item_code'],
+        #keyword: params[:q],
+        itemCode: params['item_code'],
         imageFlag: 1,
       )
 
@@ -30,7 +30,6 @@ class OwnershipsController < ApplicationController
     # TODO ユーザにwant or haveを設定する
     # params[:type]の値にHaveボタンが押された時には「Have」,
     # Wantボタンが押された時には「Want」が設定されています。
-    @item = Item.find(params[:item_id])
     if params[:type]=='Have'
       current_user.have(@item)
     end
@@ -49,11 +48,9 @@ class OwnershipsController < ApplicationController
     # params[:type]の値にHave itボタンが押された時には「Have」,
     # Want itボタンが押された時には「Want」が設定されています。
     if params[:type]=='Have'
-      @item = current_user.haves.find(params[:id]).item
       current_user.unhave(@item)
     end
     if params[:type]=='Want'
-      @item = current_user.wants.find(params[:id]).item
       current_user.unwant(@item)
     end
     
