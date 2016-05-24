@@ -4,7 +4,6 @@
   <% else %>
     <%= render 'items/want' , item: item %>
   <% end %> 
-
   <% if current_user.have? item %>
     <%= render 'items/unhave' , item: item %>
   <% else %>
