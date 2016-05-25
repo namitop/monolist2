@@ -12,6 +12,12 @@ class RankingController < ApplicationController
       end
     end
     @have_array.sort! { |a, b| b[1] <=> a[1] }
+    if @have_array.size < 10
+      @have_array = @have_array.first(@have_array.size)
+    else
+      @have_array = @have_array.first(10)
+    end
+      
   end
 
   def want
@@ -22,6 +28,11 @@ class RankingController < ApplicationController
       end
     end
     @want_array.sort! { |a, b| b[1] <=> a[1] }
+    if @want_array.size < 10
+      @want_array = @want_array.first(@want_array.size)
+    else
+      @want_array = @want_array.first(10)
+    end
   end
   
   private
