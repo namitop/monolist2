@@ -6,10 +6,11 @@
     <h1>WANT Ranking<h1>
   </div>
 </div>
-<% for i in 0..9 %>
-  <% if @want_array[i][1]==0 then %>
-    <% return %>
-  <% end %>
+<%# for i in 0..9 %>
+<% @want_array.each_with_index do |want, index| %>
+  <%# if @want_array[i][1]==0 then %>
+    <%# return %>
+  <%# end %>
 
 
   <div class="container">
@@ -21,11 +22,11 @@
         <div class="image">
           <div class="img-wrap">
             <% #TODO 商品イメージ %>
-            <%= image_tag(@want_array[i][0].medium_image.gsub('?_ex=128x128', '') , alt: @want_array[i][0].title) %>
+            <%= image_tag(want[0].medium_image.gsub('?_ex=128x128', '') , alt: want[0].title) %>
           </div>
         </div>
         <div class="title">
-          <%= @want_array[i][0].title %>
+          <%= want[0].title %>
         </div>
 <%
 =begin
@@ -65,9 +66,9 @@
       </div>
       <div class="item-single-side">
         <div class="side-box">
-          <h4 class="side-box-title">Wantしたユーザー（<%= @want_array[i][1] %>人）</h4>
+          <h4 class="side-box-title">Wantしたユーザー（<%= want[1] %>人）</h4>
           <div class="side-box-body">
-            <% @want_array[i][0].want_users.each do |user| %>
+            <% want[0].want_users.each do |user| %>
               <div class="icon">
                 <%= link_to gravatar_for(user, size: 20), user %>
               </div>
@@ -76,7 +77,7 @@
         </div>
         <div class="text-center">
           <% #TODO 正しいリンク先に %>
-          <%= link_to('楽天詳細ページへ', @want_array[i][0].detail_page_url) %>
+          <%= link_to('楽天詳細ページへ', want[0].detail_page_url) %>
         </div>
       </div>
     </div>
