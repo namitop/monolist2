@@ -1,0 +1,84 @@
+<div class="title">
+  <div class="icon">
+    <span class="glyphicon glyphicon-king color-blue" aria-hidden="true"></span>
+  </div>
+  <div class="name">
+    <h1>WANT Ranking<h1>
+  </div>
+</div>
+<% for i in 0..9 %>
+  <% if @want_array[i][1]==0 then %>
+    <% return %>
+  <% end %>
+
+
+  <div class="container">
+    <div class="container-inner inner-sm clearfix">
+      <div class="rank-logo">
+      　<span><%= i+1 %></span>
+      </div>
+      <div class="item-single-main">
+        <div class="image">
+          <div class="img-wrap">
+            <% #TODO 商品イメージ %>
+            <%= image_tag(@want_array[i][0].medium_image.gsub('?_ex=128x128', '') , alt: @want_array[i][0].title) %>
+          </div>
+        </div>
+        <div class="title">
+          <%= @want_array[i][0].title %>
+        </div>
+<%
+=begin
+%>
+        <div class="action clearfix">
+        <% if current_user.want? @have_array[i][0] %>
+          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Want") ,
+                      :class => "btn-want btn btn-danger btn-sm want_it",
+                      :item_code => "want-#{@have_array[i][0]['itemCode']}",
+                      :remote => true,
+                      :method => :post %>
+        <% else %>
+          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Want") ,
+                      :class => "btn-want btn btn-danger btn-sm want",
+                      :item_code => "want-#{@have_array[i][0]['itemCode']}",
+                      :remote => true,
+                      :method => :delete %>
+        <% end %>
+        
+        <% if current_user.have? @have_array[i][0] %>
+          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Have") ,
+                      :class => "btn-have btn btn-warning btn-sm have_it",
+                      :item_code => "have-#{@have_array[i][0]['itemCode']}",
+                      :remote => true,
+                      :method => :post %>
+        <% else %>
+          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Have") ,
+                      :class => "btn-have btn btn-warning btn-sm have",
+                      :item_code => "have-#{@have_array[i][0]['itemCode']}",
+                      :remote => true,
+                      :method => :delete %>
+        <% end %>
+        </div>
+<%
+=end
+%>
+      </div>
+      <div class="item-single-side">
+        <div class="side-box">
+          <h4 class="side-box-title">Wantしたユーザー（<%= @want_array[i][1] %>人）</h4>
+          <div class="side-box-body">
+            <% @want_array[i][0].want_users.each do |user| %>
+              <div class="icon">
+                <%= link_to gravatar_for(user, size: 20), user %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="text-center">
+          <% #TODO 正しいリンク先に %>
+          <%= link_to('楽天詳細ページへ', @want_array[i][0].detail_page_url) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
