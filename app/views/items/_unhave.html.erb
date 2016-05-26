@@ -1,26 +1,6 @@
-<%=
-=begin 
-link_to "" , 
-  ownership_path( current_user.haves.find_by(:item_id => item.id) , 
-    item_id: item.id , type: "Have") ,
-  :class => "have-#{item.id} btn-have btn btn-warning btn-sm have_it",
-  :remote => true,
-  :method => :delete
-=end
-%> 
-  
-          <%=
-=begin
-link_to "" , ownership_path(current_user.haves.find_by(:item_code => item['itemCode']) ,item_code: item['itemCode'] , type: "Have") ,
-                      :class => "have-#{item.id} btn-have btn btn-warning btn-sm have_it",
-                      :remote => true,
-                      :method => :delete
-=end
-%>
 <%= link_to "" , 
   ownership_path( current_user.haves.find_by(:item_id => item.id) , 
     item_id: item.id , type: "Have") ,
   :class => "have-#{item.id} btn-have btn btn-warning btn-sm have_it",
-  :item_code => "have-#{item.id}",
   :remote => true,
   :method => :delete %>

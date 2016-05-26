@@ -1,23 +1,4 @@
-<%=
-=begin
-link_to "" , ownerships_path(item_id: item.id , type: "Want") ,
-    :class => "want-#{item.id} btn-want btn btn-danger btn-sm want",
-    :remote => true,
-    :method => :post 
-=end
-%>
-    
-              <%=
-=begin
-link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
-                        :class => "want-#{item.id} btn-want btn btn-danger btn-sm want",
-                        :remote => true,
-                        :method => :post
-=end
-%>
-
 <%= link_to "" , ownerships_path(item_id: item.id , type: "Want") ,
     :class => "want-#{item.id} btn-want btn btn-danger btn-sm want",
-    :item_code => "want-#{item.id}",
     :remote => true,
     :method => :post %>

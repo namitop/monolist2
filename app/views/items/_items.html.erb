@@ -16,11 +16,12 @@
         </div>
         <div class="action clearfix">
         <% if current_user.want? item %>
-          <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
+          <%= link_to "" , ownership_path(current_user.want_items.find_by(:item_code => item['itemCode']), item_id: current_user.want_items.find_by(:item_code => item['itemCode']).id , type: "Want") ,
                       :class => "btn-want btn btn-danger btn-sm want_it",
                       :item_code => "want-#{item['itemCode']}",
                       :remote => true,
                       :method => :delete %>
+                      
         <% else %>
           <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
                       :class => "btn-want btn btn-danger btn-sm want",
@@ -30,7 +31,7 @@
         <% end %>
         
         <% if current_user.have? item %>
-          <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
+          <%= link_to "" , ownership_path(current_user.have_items.find_by(:item_code => item['itemCode']), item_id: current_user.have_items.find_by(:item_code => item['itemCode']).id , type: "Have") ,
                       :class => "btn-have btn btn-warning btn-sm have_it",
                       :item_code => "have-#{item['itemCode']}",
                       :remote => true,

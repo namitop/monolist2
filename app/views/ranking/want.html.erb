@@ -28,41 +28,20 @@
         <div class="title">
           <%= want[0].title %>
         </div>
-<%
-=begin
-%>
+        
         <div class="action clearfix">
-        <% if current_user.want? @have_array[i][0] %>
-          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Want") ,
-                      :class => "btn-want btn btn-danger btn-sm want_it",
-                      :item_code => "want-#{@have_array[i][0]['itemCode']}",
-                      :remote => true,
-                      :method => :post %>
+        <% if current_user.want? want[0] %>
+          <%= render 'items/unwant' , item: want[0] %>
         <% else %>
-          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Want") ,
-                      :class => "btn-want btn btn-danger btn-sm want",
-                      :item_code => "want-#{@have_array[i][0]['itemCode']}",
-                      :remote => true,
-                      :method => :delete %>
+          <%= render 'items/want' , item: want[0] %>
         <% end %>
         
-        <% if current_user.have? @have_array[i][0] %>
-          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Have") ,
-                      :class => "btn-have btn btn-warning btn-sm have_it",
-                      :item_code => "have-#{@have_array[i][0]['itemCode']}",
-                      :remote => true,
-                      :method => :post %>
+        <% if current_user.have? want[0] %>
+          <%= render 'items/unhave' , item: want[0] %>
         <% else %>
-          <%= link_to "" , ownerships_path(item_code: @have_array[i][0]['itemCode'] , type: "Have") ,
-                      :class => "btn-have btn btn-warning btn-sm have",
-                      :item_code => "have-#{@have_array[i][0]['itemCode']}",
-                      :remote => true,
-                      :method => :delete %>
+          <%= render 'items/have' , item: want[0] %>
         <% end %>
         </div>
-<%
-=end
-%>
       </div>
       <div class="item-single-side">
         <div class="side-box">

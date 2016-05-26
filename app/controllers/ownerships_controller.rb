@@ -41,7 +41,7 @@ class OwnershipsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:item_id]) #何これ？
+    @item = Item.find(params[:item_id])
 
     # TODO 紐付けの解除。 
     # params[:type]の値にHave itボタンが押された時には「Have」,
