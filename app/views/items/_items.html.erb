@@ -20,13 +20,13 @@
                       :class => "btn-want btn btn-danger btn-sm want_it",
                       :item_code => "want-#{item['itemCode']}",
                       :remote => true,
-                      :method => :post %>
+                      :method => :delete %>
         <% else %>
           <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
                       :class => "btn-want btn btn-danger btn-sm want",
                       :item_code => "want-#{item['itemCode']}",
                       :remote => true,
-                      :method => :delete %>
+                      :method => :post %>
         <% end %>
         
         <% if current_user.have? item %>
@@ -34,13 +34,13 @@
                       :class => "btn-have btn btn-warning btn-sm have_it",
                       :item_code => "have-#{item['itemCode']}",
                       :remote => true,
-                      :method => :post %>
+                      :method => :delete %>
         <% else %>
           <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
                       :class => "btn-have btn btn-warning btn-sm have",
                       :item_code => "have-#{item['itemCode']}",
                       :remote => true,
-                      :method => :delete %>
+                      :method => :post %>
         <% end %>
         </div>
       </div>
